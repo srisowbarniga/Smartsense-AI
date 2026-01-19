@@ -9,7 +9,7 @@ import os
 OLLAMA_CHAT_URL = "http://localhost:11434/api/chat"
 MODEL = "llama3:latest" 
 
-CSV_FILE = "data/processed/sensor data cleaned.csv"
+CSV_FILE = "data/processed/sensor_data_cleaned.csv"
 
 # ===============================
 # TOOLS (THE AGENT'S HANDS)
