@@ -1,0 +1,6 @@
+{
+    "status": "CRITICAL",
+    "summary": "Sensor data file not found and maintenance is overdue. This combination indicates a high risk of machine malfunction or failure.",
+    "insights": "The absence of recent sensor data makes it difficult to detect potential issues, while the lack of recent maintenance increases the likelihood of equipment degradation or breakdown.",
+    "recommendation": "Immediate attention is required to resolve the missing sensor data issue and perform necessary maintenance to ensure machine safety."
+}
