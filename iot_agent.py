@@ -113,18 +113,25 @@ def run_agent(user_query):
                 messages.append({"role": "user", "content": f"Error: {tool_name} not found."})
 
         # FINAL: Agent decides it has enough info to finish
-        elif "status" in decision:
-            print("\n📊 FINAL AGENT REPORT:\n")
-            report = json.dumps(decision, indent=4)
-            print(report)
+       # FINAL: Agent decides it has enough info to finish
+elif "status" in decision:
+    print("\n📊 FINAL AGENT REPORT:\n")
+    report = json.dumps(decision, indent=4)
+    print(report)
 
-            # Save the report to a file
-            os.makedirs("output", exist_ok=True)
-            with open("output/report.txt", "w", encoding="utf-8") as f:
-                f.write(report)
-            
-            print("\n✅ Report successfully saved to output/report.txt")
-            return
+    # Ensure output folder exists
+    os.makedirs("output", exist_ok=True)
+
+    # Save TXT (optional)
+    with open("output/report.txt", "w", encoding="utf-8") as f:
+        f.write(report)
+
+    # Save JSON (for Streamlit dashboard)
+    with open("output/report.json", "w", encoding="utf-8") as f:
+        json.dump(decision, f, indent=4)
+    
+    print("\n✅ Report successfully saved to output/report.txt and output/report.json")
+    return
 
     print("❌ Failure: Agent timed out without finishing.")
 
