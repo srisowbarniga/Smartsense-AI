@@ -4,6 +4,7 @@ import altair as alt
 import json
 import os
 import subprocess
+import sys
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
@@ -17,7 +18,6 @@ st.title("📡 SmartSense AI – Industrial IoT Monitoring")
 st.caption("Autonomous Agent-driven sensor monitoring and safety auditing")
 
 # ---------------- LOAD DATA ----------------
-# Using your specified path
 csv_path = "data/processed/sensor_data_cleaned.csv"
 
 if os.path.exists(csv_path):
@@ -63,23 +63,18 @@ with right_col:
     st.write("Trigger the autonomous reasoning loop to audit machine safety.")
 
     if st.button("🚀 Run AI Safety Audit"):
-        with st.status("Agent Reasoning...", expanded=True) as status:
-            st.write("🧠 Accessing Llama 3 Brain...")
+        with st.spinner("🧠 Agent reasoning..."):
             # Run your agent script
-import sys
-subprocess.run([sys.executable, "iot_agent.py"])
-
-                       st.write("🔧 Executing Tools (Sensors & Logs)...")
-            st.write("📝 Finalizing Report...")
-            status.update(label="Audit Complete!", state="complete", expanded=False)
+            subprocess.run([sys.executable, "iot_agent.py"])
+        st.success("🔧 Audit Complete!")
 
     # ---------------- DISPLAY AGENT REPORT ----------------
-    report_path = "output/report.txt"
+    report_path = "output/report.json"  # Use JSON for safety
     if os.path.exists(report_path):
         with open(report_path, "r") as f:
             try:
                 report_data = json.load(f)
-                
+
                 # Dynamic Styling based on Status
                 status_color = {
                     "CRITICAL": "red",
@@ -87,9 +82,9 @@ subprocess.run([sys.executable, "iot_agent.py"])
                     "NORMAL": "green"
                 }.get(report_data.get("status"), "gray")
 
-                st.markdown(f"### Status: :{status_color}[{report_data.get('status')}]")
+                st.markdown(f"### Status: <span style='color:{status_color}'>{report_data.get('status')}</span>", unsafe_allow_html=True)
                 
-                with st.container(border=True):
+                with st.container():
                     st.markdown("**Summary**")
                     st.write(report_data.get("summary"))
                     
@@ -98,7 +93,7 @@ subprocess.run([sys.executable, "iot_agent.py"])
                     
                     st.markdown("**Recommendation**")
                     st.success(report_data.get("recommendation"))
-            except:
+            except json.JSONDecodeError:
                 st.warning("Agent report found, but format is invalid. Run audit again.")
     else:
         st.info("No report generated. Click 'Run AI Safety Audit' to start.")

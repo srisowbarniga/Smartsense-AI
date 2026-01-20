@@ -10,7 +10,10 @@ OLLAMA_CHAT_URL = "http://localhost:11434/api/chat"
 MODEL = "llama3:latest" 
 
 CSV_FILE = "data/processed/sensor_data_cleaned.csv"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 88a9a57efbe5297ccc782354738d0ed4d9b648f9
 
 # ===============================
 # TOOLS (THE AGENT'S HANDS)
