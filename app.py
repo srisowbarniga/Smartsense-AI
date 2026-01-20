@@ -66,8 +66,10 @@ with right_col:
         with st.status("Agent Reasoning...", expanded=True) as status:
             st.write("🧠 Accessing Llama 3 Brain...")
             # Run your agent script
-            subprocess.run(["python", "iot_agent.py"], check=True)
-            st.write("🔧 Executing Tools (Sensors & Logs)...")
+import sys
+subprocess.run([sys.executable, "iot_agent.py"])
+
+                       st.write("🔧 Executing Tools (Sensors & Logs)...")
             st.write("📝 Finalizing Report...")
             status.update(label="Audit Complete!", state="complete", expanded=False)
 

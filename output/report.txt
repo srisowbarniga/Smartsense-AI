@@ -1,6 +1,6 @@
 {
     "status": "CRITICAL",
-    "summary": "Sensor data file not found and maintenance is overdue. This combination indicates a high risk of machine malfunction or failure.",
-    "insights": "The absence of recent sensor data makes it difficult to detect potential issues, while the lack of recent maintenance increases the likelihood of equipment degradation or breakdown.",
-    "recommendation": "Immediate attention is required to resolve the missing sensor data issue and perform necessary maintenance to ensure machine safety."
+    "summary": "High temperature reading and overdue maintenance detected. Immediate attention is required to ensure machine safety.",
+    "insights": "The high temperature indicates a potential risk of overheating, while the overdue maintenance suggests that critical components may be worn out or damaged.",
+    "recommendation": "Schedule emergency maintenance immediately to address these issues and prevent any catastrophic failures."
 }
